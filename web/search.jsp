@@ -23,7 +23,7 @@
     int pag = 1;
     boolean isAsc = true;
     Boolean isCertain = null;
-    int pageSize = 15;
+    int pageSize = 10;
     try {
         con = Tools.ParToStr(request.getParameter("searchCon"));
         isCertain = Boolean.parseBoolean(Tools.ParToStr(request.getParameter("isCertain")));
@@ -90,107 +90,300 @@
             <span class="sr-only">progress</span>
         </div>
     </div>
-    <div class="table-responsive">
-    <table id="search_table"  class="tablesorter table-bordered">
-        <caption>搜索结果</caption>
-        <span class='text-danger'>小提示：点击表头可排序查看哦！表格列宽也可以动态调整！</span>
-        <thead>
-        <tr>
-            <th data-resizable-column-id="题号">题号</th>
-            <th data-resizable-column-id="科目">科目</th>
-            <th data-resizable-column-id="类型">类型</th>
-            <th data-resizable-column-id="分值">分值</th>
-            <th data-resizable-column-id="难度">难度</th>
-            <th data-resizable-column-id="内容">内容</th>
-            <th data-resizable-column-id="答案">答案</th>
-            <th data-resizable-column-id="解析">解析</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
+
+    <div id="caption">
+        搜索 <span class="text-info"><%=content%></span> 的结果 <div class='pull-right'>本页共有 <label class='text-info'><%=list!=null?list.size():0%></label> 条记录</div>
     </div>
-    <hr>
-    <nav>
-        <ul class="pager" <%if(list==null){%>style="display: none;"<%}%>>
-            <li><a style="border-radius: 0" href="javascript:;" id="pre_page"><<</a></li>
-            <li><a style="border-radius: 0" href="javascript:;" class="active" id="cur_page">1</a></li>
-            <li><a style="border-radius: 0" href="javascript:;" id="next_page">>></a></li>
+    <div class='text-danger'>小提示：点击表头可排序查看哦！表格列宽也可以动态调整！</div>
+    <br>
+    <div>
+        <ul id="myTabs" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#content1" id="id-tab" role="tab" data-toggle="tab" aria-controls="content1" aria-expanded="true">
+                    题号
+                </a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#content2" role="tab" id="content-tab" data-toggle="tab" aria-controls="content2" aria-expanded="false">
+                    内容
+                </a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#content3" role="tab" id="analy-tab" data-toggle="tab" aria-controls="content3" aria-expanded="false">
+                    解析
+                </a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#content4" role="tab" id="subject-tab" data-toggle="tab" aria-controls="content4" aria-expanded="false">
+                    科目
+                </a>
+            </li>
         </ul>
-    </nav>
+        <div id="myTabContent" class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="content1" value="ques_Id" aria-labelledby="id-tab">
+                <div class="table-responsive">
+                    <table id="searchId_table"  class="tablesorter table-bordered">
+                        <thead>
+                        <tr>
+                            <th data-resizable-column-id="题号">题号</th>
+                            <th data-resizable-column-id="科目">科目</th>
+                            <th data-resizable-column-id="类型">类型</th>
+                            <th data-resizable-column-id="分值">分值</th>
+                            <th data-resizable-column-id="难度">难度</th>
+                            <th data-resizable-column-id="内容">内容</th>
+                            <th data-resizable-column-id="答案">答案</th>
+                            <th data-resizable-column-id="解析">解析</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <nav>
+                    <ul class="pager" <%if(list==null){%>style="display: none;"<%}%>>
+                        <li><a style="border-radius: 0" href="javascript:;" name="pre_page"><<</a></li>
+                        <li><a style="border-radius: 0" href="javascript:;" class="active" name="cur_page">1</a></li>
+                        <li><a style="border-radius: 0" href="javascript:;" name="next_page">>></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="content2" value="ques_Content" aria-labelledby="content-tab">
+                <div class="table-responsive">
+                    <table id="searchContent_table"  class="tablesorter table-bordered">
+                        <thead>
+                        <tr>
+                            <th data-resizable-column-id="题号">题号</th>
+                            <th data-resizable-column-id="科目">科目</th>
+                            <th data-resizable-column-id="类型">类型</th>
+                            <th data-resizable-column-id="分值">分值</th>
+                            <th data-resizable-column-id="难度">难度</th>
+                            <th data-resizable-column-id="内容">内容</th>
+                            <th data-resizable-column-id="答案">答案</th>
+                            <th data-resizable-column-id="解析">解析</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <nav>
+                    <ul class="pager" <%if(list==null){%>style="display: none;"<%}%>>
+                        <li><a style="border-radius: 0" href="javascript:;" name="pre_page"><<</a></li>
+                        <li><a style="border-radius: 0" href="javascript:;" class="active" name="cur_page">1</a></li>
+                        <li><a style="border-radius: 0" href="javascript:;" name="next_page">>></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="content3" value="ques_Analy" aria-labelledby="analy-tab">
+                <div class="table-responsive">
+                    <table id="searchAnaly_table"  class="tablesorter table-bordered">
+                        <thead>
+                        <tr>
+                            <th data-resizable-column-id="题号">题号</th>
+                            <th data-resizable-column-id="科目">科目</th>
+                            <th data-resizable-column-id="类型">类型</th>
+                            <th data-resizable-column-id="分值">分值</th>
+                            <th data-resizable-column-id="难度">难度</th>
+                            <th data-resizable-column-id="内容">内容</th>
+                            <th data-resizable-column-id="答案">答案</th>
+                            <th data-resizable-column-id="解析">解析</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <nav>
+                    <ul class="pager" <%if(list==null){%>style="display: none;"<%}%>>
+                        <li><a style="border-radius: 0" href="javascript:;" name="pre_page"><<</a></li>
+                        <li><a style="border-radius: 0" href="javascript:;" class="active" name="cur_page">1</a></li>
+                        <li><a style="border-radius: 0" href="javascript:;" name="next_page">>></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="content4" value="ques_Subject" aria-labelledby="subject-tab">
+                <div class="table-responsive">
+                    <table id="searchSubject_table"  class="tablesorter table-bordered">
+                        <thead>
+                        <tr>
+                            <th data-resizable-column-id="题号">题号</th>
+                            <th data-resizable-column-id="科目">科目</th>
+                            <th data-resizable-column-id="类型">类型</th>
+                            <th data-resizable-column-id="分值">分值</th>
+                            <th data-resizable-column-id="难度">难度</th>
+                            <th data-resizable-column-id="内容">内容</th>
+                            <th data-resizable-column-id="答案">答案</th>
+                            <th data-resizable-column-id="解析">解析</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <nav>
+                    <ul class="pager" <%if(list==null){%>style="display: none;"<%}%>>
+                        <li><a style="border-radius: 0" href="javascript:;" name="pre_page"><<</a></li>
+                        <li><a style="border-radius: 0" href="javascript:;" class="active" name="cur_page">1</a></li>
+                        <li><a style="border-radius: 0" href="javascript:;" name="next_page">>></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
 
 <jsp:include page="template/footer.jsp"></jsp:include>
 </body>
 </html>
+
+
 <script>
     $(document).ready(function () {
+        function tableIdMap(i){
+            if(i==0) return 'searchId_table';
+            if(i==1) return 'searchContent_table';
+            if(i==2) return 'searchAnaly_table';
+            if(i==3) return 'searchSubject_table';
+        }
+        function contentMap(i){
+            if(i==0) return 'ques_Id';
+            if(i==1) return 'ques_Content';
+            if(i==2) return 'ques_Analy';
+            if(i==3) return 'ques_Subject';
+        }
         var search_info;
-        $("#cur_page").text(<%=pag%>)
-        $("#pre_page").click(function () {
-            if ($("#cur_page").text() == 1)
-                return;
-            if (search_info == null) return;
-            var temp=search_info
-            temp.page = Number($("#cur_page").text() - 1)
-            $.ajax({
-                method: "GET",
-                url: "ajax/start",
-                data: temp
-            }).done(function (d) {
-                if (d == -1)
-                    $("#pre_page").popover({
-                        html:true,
-                        trigger:'manual',
-                        content:"<span style='color:red'><span class='glyphicon glyphicon-remove'></span> 无数据</span>",
-                        container:'body'
-                    }).popover('show')
-                else{
-                    $("#search_progress").animate({width: "100%"}, 100, null, function () {
-                        $("#search_table").quesTableShow(d)
-                    })
-                    search_info=temp
-                    $("#cur_page").text(temp.page)
-                }
+        $("[name=cur_page]").text(<%=pag%>)
+        $("[name=pre_page]").each(function (i) {
+            $(this).click(function () {
+                if ($("#cur_page").text() == 1)
+                    return;
+                if (search_info == null) return;
+                var temp=search_info
+                temp.page = Number($("[name=cur_page]").eq(i).text() - 1)
+                if(temp.page<1)
+                    return;
+                $.ajax({
+                    method: "GET",
+                    url: "ajax/start",
+                    data: temp
+                }).done(function (d) {
+                    if (d == -1)
+                        $("[name=pre_page]").eq(i).popover({
+                            html:true,
+                            trigger:'manual',
+                            content:"<span style='color:red'><span class='glyphicon glyphicon-remove'></span> 无数据</span>",
+                            placement:'top',
+                        }).popover('show').on("shown.bs.popover",function(){
+                            var t=$(this)
+                            setTimeout(function(){
+                                t.popover('hide')
+                            },1000)
+                        })
+                    else{
+                        $("#search_progress").animate({width: "100%"}, 100, null, function () {
+                            $("#"+tableIdMap(i)).quesTableShow(d)
+                        })
+                        search_info=temp
+                        $("[name=cur_page]").eq(i).text(temp.page)
+
+                    }
+                })
             })
-        })
-        $("#next_page").click(function () {
-            if (search_info == null) return;
-            var temp=search_info
-            temp.page = Number($("#cur_page").text()) + 1
-            $.ajax({
-                method: "GET",
-                url: "ajax/start",
-                data: temp
-            }).done(function (d) {
-                if (d == -1)
-                    $("#next_page").popover({
-                        html:true,
-                        trigger:'manual',
-                        content:"<span style='color:red'><span class='glyphicon glyphicon-remove'></span> 无数据</span>",
-                        container:'body'
-                    }).popover('show').on("shown.bs.popover",function(){
-                        var t=$(this)
-                        setTimeout(function(){
-                            t.popover('hide')
-                        },1500)
-                    })
-                else{
-                    $("#search_progress").animate({width: "100%"}, 100, null, function () {
-                        $("#search_table").quesTableShow(d)
-                    })
-                    search_info=temp
-                    $("#cur_page").text(temp.page)
-                }
+        });
+        $("[name=next_page]").each(function (i) {
+            $(this).click(function () {
+                if (search_info == null) return;
+                var temp=search_info
+                temp.page = Number($("[name=cur_page]").eq(i).text()) + 1
+                $.ajax({
+                    method: "GET",
+                    url: "ajax/start",
+                    data: temp
+                }).done(function (d) {
+                    if (d == -1)
+                        $("[name=next_page]").eq(i).popover({
+                            html:true,
+                            trigger:'manual',
+                            content:"<span style='color:red'><span class='glyphicon glyphicon-remove'></span> 无数据</span>",
+                            placement:'top'
+                        }).popover('show').on("shown.bs.popover",function(){
+                            var t=$(this)
+                            setTimeout(function(){
+                                t.popover('hide')
+                            },1500)
+                        })
+                    else{
+                        $("#search_progress").animate({width: "100%"}, 100, null, function () {
+                            $("#"+tableIdMap(i)).quesTableShow(d)
+                        })
+                        search_info=temp
+                        $("[name=cur_page]").eq(i).text(temp.page)
+                    }
+                })
+            })
+        });
+        loadDiv='<div class="text-center" style=""><a href="javascript:;">' +
+                '<img width="48" height="48" id="loading" src="images/loading.gif">' +
+                '</a></div>';
+        $('#myTabs li a').each(function (i) {
+            $(this).on('show.bs.tab', function () {
+                var tabcon = $($(this).attr('href'));
+                tabcon.children().hide();
+                tabcon.append(loadDiv);
+                search_info.searchCon = contentMap(i);
+                search_info.page=1;
+                $.ajax({
+                    method: "GET",
+                    url: "ajax/start",
+                    data: search_info
+                }).done(function (d) {
+                    setTimeout(function () {
+                        $('#'+tableIdMap(i)).quesTableShow(d);
+                        tabcon.children(':last').remove();
+                        $("[name=cur_page]").text(1);
+                        tabcon.children().slideDown('normal');
+                    },600);
+                })
             })
         })
         $("#search_progress").css("width", "100%")
@@ -201,10 +394,14 @@
             map.put("page",pag);map.put("isAsc",isAsc);
             map.put("order",order);map.put("pageSize",pageSize);
             %><%=JSONObject.fromObject(map)%>
-        $("#search_table").quesTableShow(<%if(list==null){%>-1<%}else{%><%=JSONArray.fromObject(list)%><%}%>)
+        $("#searchId_table").quesTableShow(<%if(list==null){%>-1<%}else{
+        Map m = new HashMap<String,String>();
+        m.put("data",list);
+        m.put("content",content);%>
+        '<%=JSONObject.fromObject(m)%>'<%}%>)
         $("#search_btn").off("click");
         $("#search_btn").click(function (e, a) {
-            console.log(a)
+            console.log(a);
             if (trim($("#search_input").val()) == "") {
                 $("#search_input").popover({
                     html: true,
@@ -222,22 +419,8 @@
                         $("#search_progress").show().animate({width: '95%'})
                     }
             );
-            var isCertain = trim($("#search_way").text()) == "模糊" ? false : true;
-            var con;
-            switch (trim($("#search_content").text())) {
-                case "题号":
-                    con = "ques_Id";
-                    break;
-                case "内容":
-                    con = "ques_Content";
-                    break;
-                case "解析":
-                    con = "ques_Analy";
-                    break;
-                case "科目":
-                    con = "ques_Subject";
-                    break;
-            }
+            var isCertain = false;
+            var con='ques_Id';
             search_info = {
                 act: 'userSearch',
                 isCertain: isCertain,
@@ -247,7 +430,7 @@
                 page: 1,
                 isAsc: true,
                 order: 'subject',
-                pageSize: 15
+                pageSize: <%=pageSize%>
             }
             $(this).prop("disabled",true);
             $.ajax({
@@ -258,8 +441,8 @@
                 setTimeout(function () {
                     $("#search_btn").prop("disabled",false);
                     $("#search_progress").animate({width: "100%"}, 100, null, function () {
-                        $("#search_table").quesTableShow(d);
-                        $("#search_table").find("th").addClass("header")
+                        $("#searchId_table").quesTableShow(d);
+                        $("#searchId_table").find("th").addClass("header")
                     })
                     $("#cur_page").text(1)
                     if(d==-1){
@@ -273,8 +456,7 @@
     })
 
     $.fn.quesTableShow = function (data) {
-
-        var caption = $(this).find("caption")
+        var caption = $('#caption');
         var head = $(this).find("thead")
         var body = $(this).find("tbody")
         body.html("")
@@ -287,12 +469,12 @@
         } else {
             $("#search_progress").removeClass("progress-bar-danger")
             $("#search_progress").addClass("progress-bar-success")
-            data = eval(data)
-            caption.html("搜索结果  本页共有 <label class='text-info'>" + data.length + "</label> 条记录").css("color", "").show("normal")
+            data = JSON.parse(data)
+            caption.html("搜索 "+data.content+" 的结果 <div class='pull-right'>本页共有 <label class='text-info'>" + data.data.length + "</label> 条记录</div>").css("color", "").show("normal")
             head.hide().show("normal")
             body.hide().show("normal")
-            for (var i in data) {
-                body.append($(getQuesTr(data[i])))
+            for (var i in data.data) {
+                body.append($(getQuesTr(data.data[i])))
             }
             $("table").resizableColumns()
             $("table").trigger("update")//.trigger("sorton",[[0,0]]);

@@ -314,19 +314,97 @@
         }
     };
 
+
+
+
     $(function () {
+
         var crop = new CropAvatar($('#crop-avatar'));
         $('#btn-file-up').click(function () {
-            if(document.getElementsByName('avatar_file')[0].files.length==0
-                || !/^image\/\w+$/.test(document.getElementsByName('avatar_file')[0].files[0].type) ){
+            var f = document.getElementsByName('avatar_file')[0].files;
+            if(f.length==0
+                || !/^image\/\w+$/.test(f[0].type) ){
                 $.moyuAlert('请选择图片文件');
                 return false;
             }
-            $.moyuConfirm('是否确定上传？',function() {
-                crop.$avatarForm.submit();
-                return true;
-            });return false;
+            var d = getSelectedImg();
+            if(!d)
+                $.moyuAlert('请选择图片文件');
+            else {
+                $.moyuConfirm('是否确定上传？', function () {
+                    $.ajax({
+                        method:'post',
+                        contentType:f[0].type,
+                        data:d,
+                        url:'ajax/head_upload.jsp'
+                    }).done(function (d) {
+                        if(d==1){
+                            $.moyuAlert('上传成功，请刷新页面查看 :)');
+                        }else
+                            $.moyuAlert('上传失败 :(');
+                    })
+                    return true;
+                });
+            }
+            return false;
         });
     });
 
 });
+function createCanvas(){
+    return document.createElement('canvas').getContext('2d');
+}
+function downloadImg(data,filename){
+    var save_link = document.createElement('a');
+    save_link.href = data;
+    save_link.download = filename;
+    save_link.click()
+}
+function getSelectedImg(){
+    var img = $('.cropper-canvas img');
+    var box = $('.cropper-crop-box'), boxWidth = Math.floor(box.width()),boxHeight = Math.floor(box.height());
+    if(boxHeight<boxWidth) boxWidth=boxHeight;
+    else if(boxHeight>boxWidth) boxHeight=boxWidth;
+    if(img.length==0||box.length==0)
+        return false;
+
+    var canvas = createCanvas();
+    canvas.canvas.width=img.width();
+    canvas.canvas.height=img.height();
+    canvas.drawImage(img[0],0,0,img.width(),img.height());
+    var s = box.css('left'),s2= img.parent().css('left');
+    var x = Number(s.substr(0, s.length-2)-s2.substr(0, s2.length-2));
+    s = box.css('top'),s2=img.parent().css('top');
+    var y = Number(s.substr(0, s.length-2)-s2.substr(0, s2.length-2));
+    var newImg = canvas.getImageData(Math.floor(x),Math.floor(y),boxWidth,boxHeight);
+    var c = createCanvas();
+    //boxWidth==boxHeight
+    c.canvas.width=boxWidth;
+    c.canvas.height=boxHeight;
+    var mat = img[0].style.transform;
+    if(mat=='none'||mat==''||mat==null) {
+        c.putImageData(newImg,0,0);
+        return c.canvas.toDataURL();
+    }
+    var tempCanv = createCanvas();
+    tempCanv.canvas.width=newImg.width;
+    tempCanv.canvas.height=newImg.height;
+    tempCanv.putImageData(newImg,0,0);
+    var imgTag = document.createElement('img');
+    imgTag.src = tempCanv.canvas.toDataURL();
+
+    var bg = mat.indexOf('('),ed = mat.indexOf('deg');
+    var deg = Number(mat.substr(bg+1,ed-bg-1));
+    deg=deg>=0?deg:360+deg;
+    c.rotate(deg*Math.PI/180);
+    switch (deg){
+        case 90:c.drawImage(imgTag,0,-boxHeight); break;
+        case 180:c.drawImage(imgTag,-boxWidth,-boxHeight);break;
+        case 270:c.drawImage(imgTag,-boxWidth,0);break;
+    }
+    //downloadImg(c.canvas.toDataURL(),'t.png');
+    //debugger;
+    //eval("c.transform("+deg+")");
+
+    return c.canvas.toDataURL();
+}

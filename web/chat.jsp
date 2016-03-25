@@ -198,8 +198,8 @@
                     <div class="modal-footer" >
                         <div id="chat-foot" class="text-left">
                             <script type="text/plain" style="height:20%;width:100%" id="myEditor" class="btn-block"></script>
-                            <button id="send" role="sendMsg" style="display: none"
-                                    class="btn btn-success pull-right">发送
+                            <button id="send" role="sendMsg"
+                                    class="btn btn-success pull-right visible-xs visible-sm">发送
                             </button>
                         </div>
                     </div>

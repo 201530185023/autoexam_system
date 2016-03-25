@@ -1,6 +1,8 @@
-<%@ page import="com.jspsmart.upload.SmartUpload" %>
-<%@ page import="java.io.File" %>
+<%@ page import="sun.misc.BASE64Decoder" %>
 <%@ page import="top.moyuyc.transaction.Transaction" %>
+<%@ page import="java.io.FileOutputStream" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.io.InputStream" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yc
@@ -9,12 +11,44 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="../error.jsp"%>
+<%!
+    private static boolean saveBase64ToFile(String base64, String filepath) throws IOException {
+        if (base64 == null || !base64.startsWith("data:")) { // 图像数据为空
+            return false;
+        }
+        String data = base64.split(",", 2)[1];
+        BASE64Decoder decoder = new BASE64Decoder();
+        byte[] bytes = decoder.decodeBuffer(data);
+        FileOutputStream out = new FileOutputStream(filepath);
+        out.write(bytes);
+        out.flush();
+        out.close();
+        return true;
+    }
+%>
 <%
     Object user = session.getAttribute("username");
     if(user==null)
         return;
 
-    String filepath=getServletConfig().getServletContext().getRealPath("/userheads");
+    String filepath=getServletConfig().getServletContext().getRealPath("/userheads")+"/"+user+".jpg";
+    InputStream is = request.getInputStream();
+//  FileOutputStream fis = new FileOutputStream(new File("d://out.png"));
+    byte[] b = new byte[1024];
+    StringBuffer sb = new StringBuffer();
+    int len;
+    while ((len=is.read(b))!=-1) {
+        sb.append(new String(b,0,len));
+    }
+    is.close();
+    if(saveBase64ToFile(sb.toString(),filepath)) {
+        Transaction.userUpdateHead(user.toString(), "userheads/"+user+".jpg");
+        out.print(1);
+    }else
+        out.print(-1);
+%>
+
+<%/*
     int MAX_SIZE=1*1024*1024;
     //新建一个SmartUpload对象
     SmartUpload su = new SmartUpload();
@@ -54,4 +88,6 @@
     } else {
         out.print("<script> $.moyuAlert('文件上传失败，可能是文件类型不正确或者大于1MB')</script>");
     }
+    */
+
 %>

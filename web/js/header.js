@@ -141,7 +141,7 @@ $(document).ready(function(){
     $("#exit_btn").click(function(){
         $.moyuConfirm("是否确认退出?", function () {
             $.ajax({
-                method:"GET",
+                method:"POST",
                 url:"ajax/start",
                 data:{act:"userExit",username:$("#username_input").val()}
             }).done(function (d) {
@@ -285,17 +285,17 @@ $(document).ready(function(){
         })
     })
     /* 搜索 */
-    var sea_con=$("#search_content")
-    var sea_way=$("#search_way")
+    //var sea_con=$("#search_content")
+    //var sea_way=$("#search_way")
     var sea_btn=$("#search_btn")
     var sea_in=$("#search_input")
     //点击替换
-    sea_con.next().children("li").click(function(){
-        sea_con.html($(this).text()+" <span class='caret'></span>")
-    })
-    sea_way.next().children("li").click(function(){
-        sea_way.html($(this).text()+" <span class='caret'></span>")
-    })
+    //sea_con.next().children("li").click(function(){
+    //    sea_con.html($(this).text()+" <span class='caret'></span>")
+    //})
+    //sea_way.next().children("li").click(function(){
+    //    sea_way.html($(this).text()+" <span class='caret'></span>")
+    //})
     //sea_btn 点击
     sea_btn.click(function(){
         if(trim(sea_in.val())=="") {
@@ -308,14 +308,14 @@ $(document).ready(function(){
             }).popover('show')
             return;
         }
-        var isCertain=trim(sea_way.text())=="模糊"?false:true;
-        var con;
-        switch (trim(sea_con.text())){
-            case "题号":con="ques_Id"; break;
-            case "内容":con="ques_Content"; break;
-            case "解析":con="ques_Analy"; break;
-            case "科目":con="ques_Subject"; break;
-        }
+        var isCertain=false;
+        var con="ques-Id";
+        //switch (trim(sea_con.text())){
+        //    case "题号":con="ques_Id"; break;
+        //    case "内容":con="ques_Content"; break;
+        //    case "解析":con="ques_Analy"; break;
+        //    case "科目":con="ques_Subject"; break;
+        //}
         var url="search?act=userSearch&isCertain="+isCertain+"&searchCon="+con+"&content="+trim(sea_in.val())+
                 "&page=1&isAsc=true&order=subject";
         console.log(url)

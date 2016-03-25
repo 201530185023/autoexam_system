@@ -331,23 +331,35 @@ public class Transaction {
     }
     public static String searchQuesById(String id,boolean isCertain,String page,String pageSize,boolean isAsc){
         List<Ques> list=QuesAcess.getQuessById(id, Integer.parseInt(page), Integer.parseInt(pageSize), QuesAcess.QUES_SUB, isAsc, isCertain);
+        Map m = new HashMap<>();
+        m.put("data",list);
+        m.put("content",id);
         if(list==null)  return "-1";
-        return JSONArray.fromObject(list).toString();
+        return JSONObject.fromObject(m).toString();
     }
     public static String searchQuesByAnaly(String analy,String page,String pageSize,boolean isAsc){
         List<Ques> list=QuesAcess.getQuessByAnaly(analy, Integer.parseInt(page), Integer.parseInt(pageSize), QuesAcess.QUES_SUB, isAsc);
+        Map m = new HashMap<>();
+        m.put("data",list);
+        m.put("content",analy);
         if(list==null)  return "-1";
-        return JSONArray.fromObject(list).toString();
+        return JSONObject.fromObject(m).toString();
     }
     public static String searchQuesByContent(String content,String page,String pageSize,boolean isAsc){
         List<Ques> list=QuesAcess.getQuessByContent(content, Integer.parseInt(page), Integer.parseInt(pageSize), QuesAcess.QUES_SUB, isAsc);
+        Map m = new HashMap<>();
+        m.put("data",list);
+        m.put("content",content);
         if(list==null)  return "-1";
-        return JSONArray.fromObject(list).toString();
+        return JSONObject.fromObject(m).toString();
     }
     public static String searchQuesBySubject(String subject,boolean isCertain,String page,String pageSize,boolean isAsc){
         List<Ques> list=QuesAcess.getQuessBySubject(subject, Integer.parseInt(page), Integer.parseInt(pageSize), QuesAcess.QUES_SUB, isAsc, isCertain);
+        Map m = new HashMap<>();
+        m.put("data",list);
+        m.put("content",subject);
         if(list==null)  return "-1";
-        return JSONArray.fromObject(list).toString();
+        return JSONObject.fromObject(m).toString();
     }
     public static String autoTest(String subject,String singlenum,String mutinum,String judgenum,String sanum,String maxmin,String username,int lev,String levpath){
         int n1=Integer.parseInt(singlenum),n2=Integer.parseInt(mutinum),n3=Integer.parseInt(judgenum),n4=Integer.parseInt(sanum);

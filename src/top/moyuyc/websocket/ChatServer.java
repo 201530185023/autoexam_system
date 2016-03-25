@@ -179,19 +179,19 @@ public class ChatServer {
             connections.remove(this.name);
         else if(list!=null)
             list.remove(this);
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("type", "exit");
-        jsonObject.put("for", "common");
-        jsonObject.put("content", this.name);
-        jsonObject.put("onlionnum", connections.size());
-
-        Set<String> set = connections.keySet();
-        for(String name:set) {
-            if(name.equals(this.name))  continue;
-            List<ChatServer> list1 = connections.get(name);
-            broadList(list1,jsonObject);
-        }
+//
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("type", "exit");
+//        jsonObject.put("for", "common");
+//        jsonObject.put("content", this.name);
+//        jsonObject.put("onlionnum", connections.size());
+//
+//        Set<String> set = connections.keySet();
+//        for(String name:set) {
+//            if(name.equals(this.name))  continue;
+//            List<ChatServer> list1 = connections.get(name);
+//            broadList(list1,jsonObject);
+//        }
 
     }
 

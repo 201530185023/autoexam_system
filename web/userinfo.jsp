@@ -161,18 +161,18 @@ return;
                             <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <form method="post" action="ajax/head_upload.jsp" name="formhead" class="avatar-form" enctype="multipart/form-data">
+                                        <form class="avatar-form" >
                                             <div class="modal-header">
                                                 <button class="close" data-dismiss="modal" type="button">&times;</button>
-                                                <h4 class="modal-title" id="avatar-modal-label">Change Logo Picture</h4>
+                                                <h4 class="modal-title" id="avatar-modal-label">头像修改</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="avatar-body">
                                                     <div class="avatar-upload">
                                                         <input class="avatar-src" name="avatar_src" type="hidden">
                                                         <input class="avatar-data" name="avatar_data" type="hidden">
-                                                        <label for="avatarInput">图片上传</label>
-                                                        <input class="avatar-input" id="avatarInput" name="avatar_file" type="file"></div>
+                                                        <label for="avatarInput" class="btn btn-primary">图片上传</label>
+                                                        <input class="avatar-input" id="avatarInput" name="avatar_file" type="file" style="display: none;"></div>
                                                     <div class="row">
                                                         <div class="col-md-9">
                                                             <div class="avatar-wrapper"></div>
@@ -184,7 +184,7 @@ return;
                                                         </div>
                                                     </div>
                                                     <div class="row avatar-btns">
-                                                        <div class="col-md-9">
+                                                        <div class="col-md-9" >
                                                             <div class="btn-group">
                                                                 <button class="btn" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"><i class="fa fa-undo"></i> 向左旋转</button>
                                                             </div>
@@ -193,7 +193,7 @@ return;
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <button id="btn-file-up" type="submit" class="btn btn-block btn-success avatar-save">保存修改</button>
+                                                            <button id="btn-file-up" class="btn btn-block btn-success avatar-save">保存修改</button>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -1,7 +1,6 @@
 /* USER PROFILE PAGE */
-.card {
-    margin-top: 20px;
-    padding: 30px;
+.card2 {
+    padding-bottom: 15px;
     background-color: rgba(214, 224, 226, 0.2);
     -webkit-border-top-left-radius:5px;
     -moz-border-top-left-radius:5px;
@@ -13,7 +12,7 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-.card.hovercard {
+.card2.hovercard2 {
     position: relative;
     padding-top: 0;
     overflow: hidden;
@@ -21,11 +20,10 @@
     background-color: #fff;
     background-color: rgba(255, 255, 255, 1);
 }
-.card.hovercard .card-background {
-    height: 230px;
+.card2.hovercard2 .card2-background {
+    height: 130px;
 }
-.useravatar img {margin-top: 60px;}
-.card-background img {
+.card2-background img {
     -webkit-filter: blur(25px);
     -moz-filter: blur(25px);
     -o-filter: blur(25px);
@@ -35,13 +33,13 @@
     margin-top: -100px;
     min-width: 120%;
 }
-.card.hovercard .useravatar {
+.card2.hovercard2 .useravatar2 {
     position: absolute;
     top: 15px;
     left: 0;
     right: 0;
 }
-.card.hovercard .useravatar img {
+.card2.hovercard2 .useravatar2 img {
     width: 100px;
     height: 100px;
     max-width: 100px;
@@ -51,14 +49,13 @@
     border-radius: 50%;
     border: 5px solid rgba(255, 255, 255, 0.5);
 }
-.card.hovercard .card-info {
+.card2.hovercard2 .card2-info {
     position: absolute;
-    bottom: 40px;
+    bottom: 14px;
     left: 0;
     right: 0;
-    font-weight: bold;
 }
-.card.hovercard .card-info .card-title {
+.card2.hovercard2 .card2-info .card2-title {
     padding:0 5px;
     font-size: 20px;
     line-height: 1;
@@ -68,14 +65,14 @@
     -moz-border-radius: 4px;
     border-radius: 4px;
 }
-.card.hovercard .card-info {
+.card2.hovercard2 .card2-info {
     overflow: hidden;
     font-size: 12px;
     line-height: 20px;
     color: #737373;
     text-overflow: ellipsis;
 }
-.card.hovercard .bottom {
+.card2.hovercard2 .bottom {
     padding: 0 20px;
     margin-bottom: 17px;
 }

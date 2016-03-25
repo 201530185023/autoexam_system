@@ -33,11 +33,11 @@
     String lab=i>2?labels[3]:labels[i];
   %>
   <li class="list-group-item">
-    <div class="media">
+    <div class="media" style="overflow: visible">
       <div class="pull-left text-success">
         <label class="label label-<%=lab%>">TOP <%=++i%></label>
       </div>
-      <div class="media-body">
+      <div class="media-body" style="overflow: visible">
         <div>&nbsp;&nbsp;&nbsp;
           <a href="infoshow?name=<%=up.getUser_name()%>" target="_blank">
           <img style="height: 32;width:32;border-radius: 50%;" class="img-hover" src="<%=Tools.getUserHeadPath(up.getUser_name(),config)%>"> <%=up.getUser_name()%></a>

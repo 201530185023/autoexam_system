@@ -1,16 +1,26 @@
+<%@ page import="top.moyuyc.jdbc.FriendAcess" %>
+<%@ page import="top.moyuyc.jdbc.PointAcess" %>
 <%@ page import="top.moyuyc.jdbc.QuesAcess" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.LinkedList" %>
+<%@ page import="top.moyuyc.jdbc.UserPaperAcess" %>
+<%@ page import="top.moyuyc.tools.Tools" %>
 <%@ page import="java.util.Collections" %>
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="java.util.List" %>
 <%
     List<String> subject_list=QuesAcess.getAllSubs();
     subject_list=subject_list==null?new LinkedList<String>():subject_list;
     Collections.sort(subject_list);
     String way=request.getParameter("way");
+    String u="";String headpath="";
+    if(session.getAttribute("username")!=null){
+        u = session.getAttribute("username").toString();
+        headpath = Tools.getUserHeadPath(u,config);
+    }
     way= way==null?"":way;
 %>
 <link rel="stylesheet" href="assets/css/amazeui.min.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/card2.css">
 <script src="js/moyuDialog/dialog.js"></script>
 <script src="js/cookie.js"></script>
 <style>
@@ -41,7 +51,7 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-left">
                 <%if(way.equals("index")){%>
                 <li><a href="test"><span class="glyphicon glyphicon-pencil"></span> 我要考试</a></li>
                 <li><a href="history"><span class="glyphicon glyphicon-time"></span> 考试记录</a></li>
@@ -73,7 +83,8 @@
                 <li><a href="userinfo"><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
                 <li><a href="friend"><i class="am-icon-group"></i> 考友互动</a></li>
                 <%}%>
-            <%--</ul>--%>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
             <%if(session.getAttribute("username")==null){%>
             <form class="navbar-form navbar-right">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-backdrop="static" data-target="#loginModal">登录</button>
@@ -83,31 +94,37 @@
             <form class="navbar-form navbar-right" role="form">
                 <div class="form-group">
                 <div class="input-group">
-                    <div class="input-group-btn">
-                        <button id="search_way" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            模糊 <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">模糊</a></li>
-                            <li><a href="#">精确</a></li>
-                        </ul>
-                    </div>
-                    <div class="input-group-btn">
-                        <button id="search_content" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            题号 <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">题号</a></li>
-                            <li><a href="#">内容</a></li>
-                            <li><a href="#">解析</a></li>
-                            <li><a href="#">科目</a></li>
-                        </ul>
-                    </div>
-                    <input type="text" id="search_input" placeholder="题目搜索" class="form-control" aria-label="...">
+                    <%--<div class="input-group-btn">--%>
+                        <%--<button id="search_way" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+                            <%--模糊 <span class="caret"></span></button>--%>
+                        <%--<ul class="dropdown-menu">--%>
+                            <%--<li><a href="#">模糊</a></li>--%>
+                            <%--<li><a href="#">精确</a></li>--%>
+                        <%--</ul>--%>
+                    <%--</div>--%>
+                    <%--<div class="input-group-btn">--%>
+                        <%--<button id="search_content" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+                            <%--题号 <span class="caret"></span></button>--%>
+                        <%--<ul class="dropdown-menu">--%>
+                            <%--<li><a href="#">题号</a></li>--%>
+                            <%--<li><a href="#">内容</a></li>--%>
+                            <%--<li><a href="#">解析</a></li>--%>
+                            <%--<li><a href="#">科目</a></li>--%>
+                        <%--</ul>--%>
+                    <%--</div>--%>
+                    <input type="text" id="search_input" placeholder="题号/内容/解析/科目" class="form-control" aria-label="...">
                     <span class="input-group-btn">
-                        <button id="search_btn" class="btn btn-default" type="button">
+                        <button id="search_btn" class="btn btn-primary" type="button">
                             &nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;
                         </button>
                     </span>
                 </div>
+                    <div class="input-group">
+                        <a id="link_infoshow" style="margin-left:10px;margin-right:10px; " href="#">
+                            <img class="img-bigger" src="<%=headpath%>" style="cursor:pointer;border-radius:50%;width: 32;height: 32;"/>
+                            <span class="text-info"> <%=u%> </span>
+                        </a>
+                    </div>
                 </div>
                 <button id="exit_btn" type="button" class="btn btn-danger" href="javascript:;"> &nbsp;<span class="glyphicon glyphicon-off" ></span>&nbsp;</button>
             </form>
@@ -236,31 +253,49 @@
         </div>
     </div>
 </div>
+<%}else{%>
+<script>
+    $(function () {
+        var html = '<div style="width:250px;"><div class="card2 hovercard2">'+
+                '<div class="card2-background">'+
+                '<img class="card2-bkimg" src="<%=headpath%>">'+
+                '</div>'+
+                '<div class="useravatar2">'+
+                '<img style="border-radius: 50%;" height="100" width="100" src="<%=headpath%>">'+
+                '</div>'+
+                '<div class="card2-info"> <span class="card2-title" style="color:#000022"><%=u%></span></div>'+
+                '</div>' +
+                '<div class="btn-pref btn-group btn-group-justified btn-group-lg" data-toggle="buttons">'+
+                '<label class="btn btn-default" data-toggle="tooltip" title="积分">'+
+                '<span class="glyphicon glyphicon-star small" aria-hidden="true"></span>'+
+                '<p style="padding-top: 6px;" class="small"><%=PointAcess.getPointByName(u)%></p>'+
+                '</label>'+
+                '<label class="btn btn-default" data-toggle="tooltip" title="考试次数">'+
+                '<span class="glyphicon glyphicon-pencil small"></span>'+
+                '<p style="padding-top: 6px;" class="small"><%=UserPaperAcess.getTimesByUserName(u)%></p>'+
+                '</label>'+
+                '<label class="btn btn-default" data-toggle="tooltip" title="好友数">'+
+                '<i class="am-icon-group small"></i>'+
+                '<p style="padding-top: 6px;" class="small"><%=FriendAcess.getFriendCount(u)%></p>'+
+                '</label>'+
+                '<label class="btn btn-default" data-toggle="tooltip" title="世界排名">'+
+                '<i class="am-icon-trophy small"></i>'+
+                '<p style="padding-top: 6px;" class="small"><%=1+PointAcess.getBeforeCountAllByName(u)%></p>'+
+                '</label>'+
+                '</div></div>';
+        $('#link_infoshow').popover({
+            html:true,
+            placement:'bottom',
+            content:html,
+            trigger:'focus',
+        })
+    })
+</script>
 <%}%>
 <script>
     $(function () {
-        $('#choosed_subject').hover(function() {$(this).children('ul').slideDown('normal');$('#subjectstag').addClass('tigger1');},
-                 function () {
-                    $(this).children('ul').slideUp('normal');$('#subjectstag').removeClass('tigger1')
-                });
-
-//        $(window).on('resize',function(){
-//            if($(document).width()<1200) {
-//                $('[role=sendMsg]').show();
-//                if($("#phone-btn").css("display")!='none') {
-//                    $("[name=forteacher]").show()
-//                }
-//                else {
-//                    $("[name=forteacher]").hide()
-//                }
-//            }
-//            else {
-//                $('[role=sendMsg]').hide();
-//                $("[name=forteacher]").show()
-//            }
-//        })
-//        $(window).resize();
-    })
+        $('#choosed_subject').hover(function() {$(this).children('ul').slideDown('normal');$('#subjectstag').addClass('tigger1');},function () {$(this).children('ul').slideUp('normal');$('#subjectstag').removeClass('tigger1')});
+    });
 
     $(document).keydown(function(e){
         if(e.keyCode==13) {

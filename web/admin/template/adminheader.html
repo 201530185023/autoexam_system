@@ -1,4 +1,4 @@
-<script src="js/moyuDialog/dialog.js"></script>
+<script src="../js/moyuDialog/dialog.js"></script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -22,23 +22,36 @@
     </div>
 </nav>
 <script>
-    $("#input-search").keydown(function(e){
-        if(e!=null&& e.keyCode==13)
-            $("#btn-search").click();
-    });
-    $("#btn-search").click(function(){
+    $(function () {
+        $("#input-search").keydown(function(e){
+            if(e!=null&& e.keyCode==13)
+                $("#btn-search").click();
+        });
+        $("#btn-search").click(function(){
 
-    });
-    $("#btn-exit").click(function(){
-        $.moyuConfirm("是否确定退出？", function () {
-            $.ajax({
-                method: "GET",
-                url: "../ajax/adminStart.jsp",
-                data: {
-                    act: 'exit'
-                }
+        });
+        $("#btn-exit").click(function(){
+            $.moyuConfirm("是否确定退出？", function () {
+                $.ajax({
+                    method: "GET",
+                    url: "../ajax/adminStart.jsp",
+                    data: {
+                        act: 'exit'
+                    }
+                })
+                location.href = "../";
             })
-            location.href = "../";
-        })
-    });
+        });
+        function centerModals(){
+            $('.modal').each(function(i){
+                var $clone = $(this).clone().css('display', 'block').appendTo('body');
+                var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2)-20;
+                top = top > 0 ? top : 0;
+                $clone.remove();
+                $(this).find('.modal-content').css("margin-top", top);
+            });
+        }
+        $(window).on('resize',centerModals);
+    })
+
 </script>
