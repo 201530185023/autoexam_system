@@ -7,7 +7,7 @@
 
 <footer class="panel-footer">
     <div class="container">
-        <p class="text-center">Copyright &copy; 2015 - 2016 Moyu All Rights Reserved.
+        <p class="text-center">Copyright &copy; 2016 Moyu All Rights Reserved.
         </p>
         <ul class="list-unstyled list-inline text-center">
             <li >当前版本： v 2.0</li>

@@ -57,31 +57,43 @@
                 <li><a href="history"><span class="glyphicon glyphicon-time"></span> 考试记录</a></li>
                 <li><a href="userinfo"><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
                 <li><a href="friend"><i class="am-icon-group"></i> 考友互动</a></li>
+                <%--<li><a href="discuss"><i class="glyphicon glyphicon-comment"></i> 讨论区</a></li>--%>
                 <%}else if(way.equals("history")){%>
                 <li><a href="test"><span class="glyphicon glyphicon-pencil"></span> 我要考试</a></li>
                 <li class="active"><a href="history"><span class="glyphicon glyphicon-time"></span> 考试记录</a></li>
                 <li><a href="userinfo"><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
                 <li><a href="friend"><i class="am-icon-group"></i> 考友互动</a></li>
+                <%--<li><a href="discuss"><i class="glyphicon glyphicon-comment"></i> 讨论区</a></li>--%>
                 <%}else if(way.equals("test")){%>
                 <li class="active"><a href="test"><span class="glyphicon glyphicon-pencil"></span> 我要考试</a></li>
                 <li><a href="history"><span class="glyphicon glyphicon-time"></span> 考试记录</a></li>
                 <li><a href="userinfo"><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
                 <li><a href="friend"><i class="am-icon-group"></i> 考友互动</a></li>
+                <%--<li><a href="discuss"><i class="glyphicon glyphicon-comment"></i> 讨论区</a></li>--%>
                 <%}else if(way.equals("userinfo")){%>
                 <li><a href="test"><span class="glyphicon glyphicon-pencil"></span> 我要考试</a></li>
                 <li><a href="history"><span class="glyphicon glyphicon-time"></span> 考试记录</a></li>
                 <li class="active"><a href="userinfo"><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
                 <li><a href="friend"><i class="am-icon-group"></i> 考友互动</a></li>
+                <%--<li><a href="discuss"><i class="glyphicon glyphicon-comment"></i> 讨论区</a></li>--%>
                 <%}else if(way.equals("friend")){%>
                 <li><a href="test"><span class="glyphicon glyphicon-pencil"></span> 我要考试</a></li>
                 <li><a href="history"><span class="glyphicon glyphicon-time"></span> 考试记录</a></li>
                 <li><a href="userinfo"><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
                 <li class="active"><a href="friend"><i class="am-icon-group"></i> 考友互动</a></li>
+                <%--<li><a href="discuss"><i class="glyphicon glyphicon-comment"></i> 讨论区</a></li>--%>
+                <%}else if(way.equals("discuss")){%>
+                <li><a href="test"><span class="glyphicon glyphicon-pencil"></span> 我要考试</a></li>
+                <li><a href="history"><span class="glyphicon glyphicon-time"></span> 考试记录</a></li>
+                <li><a href="userinfo"><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
+                <li><a href="friend"><i class="am-icon-group"></i> 考友互动</a></li>
+                <%--<li class="active"><a href="discuss"><i class="glyphicon glyphicon-comment"></i> 讨论区</a></li>--%>
                 <%}else{%>
                 <li><a href="test"><span class="glyphicon glyphicon-pencil"></span> 我要考试</a></li>
                 <li><a href="history"><span class="glyphicon glyphicon-time"></span> 考试记录</a></li>
                 <li><a href="userinfo"><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
                 <li><a href="friend"><i class="am-icon-group"></i> 考友互动</a></li>
+                <%--<li><a href="discuss"><i class="glyphicon glyphicon-comment"></i> 讨论区</a></li>--%>
                 <%}%>
             </ul>
             <ul class="nav navbar-nav navbar-right">

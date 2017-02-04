@@ -72,8 +72,8 @@
   <div class="modal-footer" >
     <div id="chat-foot-<%=friend%>" class="text-left">
       <script type="text/plain" style="height:20%;width:100%" id="myEditor-<%=random%>" class="btn-block"></script>
-      <button id="send-<%=friend%>" role="sendMsg" style="display:none;"
-              class="btn btn-success pull-right">发送
+      <button id="send-<%=friend%>" role="sendMsg"
+              class="btn btn-success pull-right visible-xs visible-sm">发送
       </button>
 
     </div>

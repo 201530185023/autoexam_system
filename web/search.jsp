@@ -187,7 +187,7 @@
                 </div>
                 <hr>
                 <nav>
-                    <ul class="pager" <%if(list==null){%>style="display: none;"<%}%>>
+                    <ul class="pager" >
                         <li><a style="border-radius: 0" href="javascript:;" name="pre_page"><<</a></li>
                         <li><a style="border-radius: 0" href="javascript:;" class="active" name="cur_page">1</a></li>
                         <li><a style="border-radius: 0" href="javascript:;" name="next_page">>></a></li>
@@ -224,7 +224,7 @@
                 </div>
                 <hr>
                 <nav>
-                    <ul class="pager" <%if(list==null){%>style="display: none;"<%}%>>
+                    <ul class="pager" >
                         <li><a style="border-radius: 0" href="javascript:;" name="pre_page"><<</a></li>
                         <li><a style="border-radius: 0" href="javascript:;" class="active" name="cur_page">1</a></li>
                         <li><a style="border-radius: 0" href="javascript:;" name="next_page">>></a></li>
@@ -261,7 +261,7 @@
                 </div>
                 <hr>
                 <nav>
-                    <ul class="pager" <%if(list==null){%>style="display: none;"<%}%>>
+                    <ul class="pager" >
                         <li><a style="border-radius: 0" href="javascript:;" name="pre_page"><<</a></li>
                         <li><a style="border-radius: 0" href="javascript:;" class="active" name="cur_page">1</a></li>
                         <li><a style="border-radius: 0" href="javascript:;" name="next_page">>></a></li>

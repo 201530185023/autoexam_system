@@ -66,9 +66,17 @@
         <jsp-file>/chat_history.jsp</jsp-file>
     </servlet>
     <servlet>
+        <servlet-name>discuss</servlet-name>
+        <jsp-file>/discuss.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>userindex</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>discuss</servlet-name>
+        <url-pattern>/discuss</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>toplist_show</servlet-name>
         <url-pattern>/topshow</url-pattern>

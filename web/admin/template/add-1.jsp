@@ -176,7 +176,7 @@
             {
                 var ans=$("#input-answer").val().trim().split("###")
                 for(var i=0;i<ans.length;i++) {
-                    if (ans[i].length > 1 || !/$[A-Z]^/.test(ans[i])){
+                    if (ans[i].length > 1 || !/^[A-Z]$/.test(ans[i])){
                         $("#btn-add-user").popover({
                             html: true,
                             trigger: 'manual',

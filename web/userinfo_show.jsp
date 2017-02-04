@@ -112,7 +112,8 @@
           <%if(FriendAcess.checkFriendIsExists(me.toString(),user)){
               f=true;%>
           <button id="btn-fight" data-toggle="modal" data-target="#fight-Modal"
-                  data-name="<%=user%>" class="btn btn-primary btn-lg">
+                  data-name="<%=user%>" class="btn btn-primary btn-lg"
+                  title="pk积分只计算客观题">
               <i class="glyphicon glyphicon-fire"></i> 向他下战书</button>
           <button role="button-remove-friend" data-name="<%=user%>" class="btn btn-danger btn-sm">
               <i class="glyphicon glyphicon-remove"></i> 删除好友</button>

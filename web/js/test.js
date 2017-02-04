@@ -460,6 +460,8 @@ function paperShow(paperid, isShowAll) {
             act: 'showall',
             paperid: paperid,
         }
+    }).fail(function () {
+        paperShow(paperid,isShowAll);
     }).done(function (data) {
         if (data == -1) {
             $.moyuAlert("Error:" + "连接服务器出错")

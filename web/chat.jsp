@@ -8,6 +8,7 @@
 <%
     String user = session.getAttribute("username").toString();
     String headPath = Tools.getUserHeadPath(user,config);
+
 %>
 
 <jsp:include page="template/toTop.html"></jsp:include>

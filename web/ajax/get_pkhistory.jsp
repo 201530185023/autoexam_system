@@ -215,11 +215,11 @@
           var d = JSON.parse(_t.attr('data-name'));
           d.act = 'cancelpkunaccept';
           $.ajax({method:'POST',url:'ajax/start.jsp',data:d}).done(function (d) {
-            if(d==-1) tip.showAlert('Sorry, 取消失败，可能对方已经接受');
-            else{
+//            if(d==-1) tip.showAlert('Sorry, 取消失败，可能对方已经接受');
+//            else{
               tip.showAlert('取消成功');
               _t.parent().remove();
-            }
+//            }
           })
         })
       });

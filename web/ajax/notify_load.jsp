@@ -108,8 +108,10 @@
       if($('[tab-tag='+s+']').length==0){
         addTab('与'+s+'聊天...',{friend:s,random:parseInt(Math.random()*1000000)},s,'o2oChat-'+s);
       }else{$('[tab-tag='+s+']').click();}
+      $('#notify-close').click();
       return false;
     }
+    $('#notify-close').click();
   });
   
   

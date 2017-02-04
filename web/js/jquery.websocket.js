@@ -5,7 +5,7 @@
     $.websocket = function(options) {
         var defaults = {
             domain: top.location.hostname,
-            port:80,
+            port: top.location.port,
             path: ""
         };
         var opts = $.extend(defaults,options);

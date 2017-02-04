@@ -12,7 +12,7 @@ $(document).ready(function () {
     var db = openDatabase('msgDB','','msgDB',1024*1024*50);//50M
     createDBTable = function(){
         db.transaction(function (tx) {
-            tx.executeSql("create table if not exists MsgData(user varchar(12),friend VARCHAR(12),msgdata TEXT,time DATETIME,PRIMARY KEY (user,friend,time))",[],
+            tx.executeSql("create table if not exists MsgData(user varchar(12),friend VARCHAR(12),msgdata TEXT,time DATETIME)",[],
                 null,
                 function(){
                     $.moyuAlert('该浏览器不支持websql');
@@ -58,7 +58,7 @@ $(document).ready(function () {
     selectLatestDBTable = function (user,friend,n,f) {
         db.transaction(function (tx) {
             tx.executeSql(
-                "SELECT msgdata FROM (select * from MsgData WHERE friend = ? AND user=? ORDER BY `rowid` DESC LIMIT 0,?) as b order by time",
+                "SELECT msgdata FROM (select * from MsgData WHERE friend = ? AND user=? ORDER BY `rowid` LIMIT 0,?) as b",
                 [friend,user,n],
                 function(tx,rs){
                     console.log(rs.rows)

@@ -74,7 +74,8 @@
     考卷导出
   </button>
   <button id="btn-fight"
-          data-toggle="modal" data-target="#fight-Modal" class="btn btn-lg btn-danger" style="display:none;">
+          data-toggle="modal" data-target="#fight-Modal" class="btn btn-lg btn-danger" style="display:none;"
+          title="pk积分只计算客观题">
     <span class="glyphicon glyphicon-fire"></span> 向好友宣战</button>
     </div>
   </div>

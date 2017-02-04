@@ -27,7 +27,8 @@
 %>
 <tr class="<%=isOk?"danger":"warning"%>">
   <th scope="row"><%=index++%></th>
-  <td><span class="glyphicon glyphicon-star"></span> <%=pkHistory.getPaper_id()%></td>
+  <td><button class="btn-link" role="link-paper" data-name="<%=pkHistory.getPaper_id()%>">
+    <span class="glyphicon glyphicon-star"></span> <%=pkHistory.getPaper_id()%></button></td>
   <td class="<%=pkHistory.getUser1().equals(me)?"text-danger":""%>">
     <a target="_blank" href="infoshow?name=<%=pkHistory.getUser1()%>">
       <img style="height: 32;width: 32;border-radius: 50%;" class="img-bigger" src="<%=Tools.getUserHeadPath(pkHistory.getUser1(),config)%>">

@@ -48,7 +48,7 @@ jQuery.moyuConfirm = function (content,onok,oncancel,title) {
             '<div class="modal-content vertical-grabber">' +
             '<div class="modal-header">' +
             '<button type="button"' +
-            'role="cancel" ' +
+            'role="moyu-cancel" ' +
             'class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
             '<h5 class="modal-title text-center">' + (title ? title : default_val.title) + '</h5>' +
             '</div>' +
